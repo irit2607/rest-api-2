@@ -1,0 +1,1 @@
+module.exports = "mongodb://irit26:3Soj1t6SDDBCByPm@cluster0-shard-00-00.mkk5v.mongodb.net:27017,cluster0-shard-00-01.mkk5v.mongodb.net:27017,cluster0-shard-00-02.mkk5v.mongodb.net:27017/student-api?ssl=true&replicaSet=atlas-7mldlm-shard-0&authSource=admin&retryWrites=true&w=majority";

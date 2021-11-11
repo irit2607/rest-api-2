@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const ninjaSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: [true,'Nmae field is required']
+        required: [true,'Name field is required']
     },
     rank: {
         type: String
@@ -18,4 +18,4 @@ const ninjaSchema = new mongoose.Schema({
 
 const Ninja = mongoose.model('ninja', ninjaSchema);
 
-modeule.exports = Ninja;
+module.exports = Ninja;
