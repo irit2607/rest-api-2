@@ -8,7 +8,8 @@ const app = express();
 
 //connect to mongo
 mongoose.connect(url, { useNewUrlParser :true, useUnifiedTopology :true, useFindAndModify: false, useCreateIndex : true, }).then(() => console.log("Connected !"),);
-
+mongoose.Promise = global.Promise;
+app.use(express.static('public'));
 
 app.use(bodyParser.json());
 

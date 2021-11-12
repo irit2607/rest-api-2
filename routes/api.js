@@ -5,7 +5,16 @@ const Ninja = require('../models/ninja');
 
 // get a list of ninjas from database
 router.get('/ninjas' ,function(req,res, next){
-    res.send({type : 'GET'});
+    Ninja.geoNear(
+        {
+            type : "Point", cordinates : [parseFloat(req.query.lng), parseFloat(req.query.lat)]
+        },
+        {
+            maxDistance : 100000, spherical : true
+        }
+        ).then(function(ninjas){
+            res.send(ninjas);
+        });   
 });
 
 // add a new ninjas to db
@@ -17,13 +26,20 @@ router.post('/ninjas' ,function(req,res,next){
 
 // update a ninja in the db
 router.put('/ninjas/:id' ,function(req,res,next){
+    // here we r taking id from db and update it through body name(front)
+    Ninja.findByIdAndUpdate({ _id: req.params.id}, req.body).then(function(ninja){   
+        res.send(ninja);
+    });
     res.send({type:'PUT'});
 });
 
 // delete a ninja in the db
 router.delete('/ninjas/:id' ,function(req,res,next){
     Ninja.findByIdAndRemove({ _id: req.params.id}).then(function(ninja){
-        res.send(ninja);
+        Ninja.findOne({ _id: req.params.id}).then(function(ninja){
+            res.send(ninja);
+        })
+        
     });
    
 });
